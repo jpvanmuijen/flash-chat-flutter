@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 import 'login_screen.dart';
 import 'registration_screen.dart';
@@ -67,7 +68,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(          
+    return Scaffold(
       // 186.1 As a test, use the controller.value to change opacity
       // backgroundColor: Colors.red.withOpacity(controller.value),
       // 186.2 Use a color tween value as background color
@@ -91,12 +92,15 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     height: 60,
                   ),
                 ),
-                Text(
-                  'Flash Chat',
-                  style: TextStyle(
+                // 188: animated text kit, prefab animations
+                TypewriterAnimatedTextKit(
+                  text: ['Flash Chat'],
+                  textStyle: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,
                   ),
+                  isRepeatingAnimation: false,
+                  speed: Duration(milliseconds: 200),
                 ),
               ],
             ),
