@@ -18,31 +18,19 @@ const kMessageContainerDecoration = BoxDecoration(
   ),
 );
 
-class ChatButton extends StatelessWidget {
-  final Color color;
-  final String route;
-  final String text;
-  ChatButton({this.color, this.route, this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.0),
-      child: Material(
-        elevation: 5.0,
-        color: Colors.lightBlueAccent,
-        borderRadius: BorderRadius.circular(30.0),
-        child: MaterialButton(
-          onPressed: () {
-            //Navigator.pushNamed(context, LoginScreen.id);
-          },
-          minWidth: 200.0,
-          height: 42.0,
-          child: Text(
-            'Log In',
-          ),
-        ),
-      ),
-    );
-  }
-}
+const kTextFieldDecoration = InputDecoration(
+  fillColor: Colors.red,
+  hintText: 'Placeholder, use copyWith to set hintText',
+  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+  border: OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+  ),
+  enabledBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+  ),
+  focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+  ),
+);
