@@ -15,11 +15,14 @@ class FlashChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      /*
+      // 189: Disable theme to display hint text
       theme: ThemeData.dark().copyWith(
         textTheme: TextTheme(
-          body1: TextStyle(color: Colors.black54),
+          //body1: TextStyle(color: Colors.black54),
         ),
-      ),      
+      ),
+      */      
       // 182: when using an initialRoute, don't use home: 
       initialRoute: WelcomeScreen.id,
       routes: {
