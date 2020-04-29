@@ -15,19 +15,24 @@ class FlashChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      /*
+      // 189: Disable theme to display hint text
       theme: ThemeData.dark().copyWith(
         textTheme: TextTheme(
           body1: TextStyle(color: Colors.black54),
+          //body1: TextStyle(color: Colors.black54),
         ),
       ),      
-      // 182: when using an initialRoute, don't use home: 
+      ),
+      */
+      // 182: when using an initialRoute, don't use home:
       initialRoute: WelcomeScreen.id,
       routes: {
         // 182: use screen ID's instead of Strings
         // We created these as static, so we can access it directly on the class
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
-        RegistrationScreen.id : (context) => RegistrationScreen(),
+        RegistrationScreen.id: (context) => RegistrationScreen(),
         ChatScreen.id: (context) => ChatScreen(),
       },
     );
