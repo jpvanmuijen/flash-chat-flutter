@@ -1,6 +1,8 @@
+import 'package:flash_chat/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat/constants.dart';
 import 'package:flash_chat/components/rounded_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String id = 'Register';
@@ -9,6 +11,11 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  // 195 create variables voor useremail, password and Firebase auth instance
+  String email;
+  String password;
+  final _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,8 +38,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 48.0,
             ),
             TextField(
+              textAlign: TextAlign.center,
+              // 195: change keyboard type for email address
+              keyboardType: TextInputType.emailAddress,
               onChanged: (value) {
-                //Do something with the user input.
+                // 195: Store email value
+                email = value;
               },
               decoration: kTextFieldDecoration.copyWith(
                 hintText: 'Enter your email',
@@ -42,8 +53,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 8.0,
             ),
             TextField(
+              // 195: obscure password
+              obscureText: true,
+              textAlign: TextAlign.center,
               onChanged: (value) {
-                //Do something with the user input.
+                // 195: Store password value
+                password = value;
               },
               decoration: kTextFieldDecoration.copyWith(
                 hintText: 'Enter your password',
@@ -55,7 +70,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             RoundedButon(
               text: 'Register',
               color: Colors.blueAccent,
-              onPressed: null,
+              // 195: CreateUser returns a Future, so we have to wait for the result
+              onPressed: () async {
+                // 195: create user with email & password using _auth instance
+                // Returns a Future which we store in a final variable
+                // This might go wrong, so try & catch
+                try {
+                  final newUser = await _auth.createUserWithEmailAndPassword(
+                      email: email, password: password);
+                      // If something gets returned, forward user to the chat screen
+                      if(newUser != null) {
+                        Navigator.pushNamed(context, ChatScreen.id);
+                      }
+                } catch (e) {
+                  print(e);
+                }
+              },
             ),
           ],
         ),

@@ -37,7 +37,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     // animation = CurvedAnimation(parent: controller, curve: Curves.easeIn);
     // 186.2 Alternatively, set animation to be a color tween, .animate applies to a parent/controller
     animation =
-        ColorTween(begin: Colors.red, end: Colors.blue).animate(controller);
+        ColorTween(begin: Colors.blue, end: Colors.white).animate(controller);
     // Set the animation direction
     controller.forward();
 
