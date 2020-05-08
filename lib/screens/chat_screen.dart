@@ -156,7 +156,8 @@ class MessagesStream extends StatelessWidget {
           );
         }
         // Get all documents from Firebase snapshot/collection and store in a List of DocumentSnapshots
-        final messages = firebaseSnapshot.data.documents;
+        // 203: Use reversed to show the latest message at the bottom
+        final messages = firebaseSnapshot.data.documents.reversed;
         // 201: Create empty list to store messages as widgets
         List<MessageBubble> messageBubbles = [];
         for (var message in messages) {
@@ -180,6 +181,8 @@ class MessagesStream extends StatelessWidget {
           child: ListView(
             padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
             children: messageBubbles,
+            // 203: Make the list view sticky to the bottom
+            reverse: true,
           ),
         );
       },
