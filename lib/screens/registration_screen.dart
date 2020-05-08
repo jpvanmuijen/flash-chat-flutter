@@ -33,11 +33,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               // 185: wrap with Hero widget and give it the same tag as Welcome screen
-              Hero(
-                tag: 'logo',
-                child: Container(
-                  height: 200.0,
-                  child: Image.asset('images/logo.png'),
+              // 203: Wrap with Flexible widget, to allow it to shrink to prevent overflow
+              Flexible(
+                child: Hero(
+                  tag: 'logo',
+                  child: Container(
+                    height: 200.0,
+                    child: Image.asset('images/logo.png'),
+                  ),
                 ),
               ),
               SizedBox(
@@ -78,14 +81,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 color: Colors.blueAccent,
                 // 195: CreateUser returns a Future, so we have to wait for the result
                 onPressed: () async {
-                  // 197: Trigger showSPinner bool while this is running 
+                  // 197: Trigger showSPinner bool while this is running
                   // (needs SetState to call build method again)
                   setState(() {
                     showSpinner = true;
-                  });                  
+                  });
                   // 195: create user with email & password using _auth instance
                   // Returns a Future which we store in a final variable
-                  // This might go wrong, so try & catch             
+                  // This might go wrong, so try & catch
                   try {
                     final newUser = await _auth.createUserWithEmailAndPassword(
                         email: email, password: password);
