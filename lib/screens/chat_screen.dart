@@ -116,6 +116,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       _firestore.collection('messages').add({
                         'text': messageText,
                         'sender': loggedInUser.email,
+                        'time': FieldValue.serverTimestamp(),
                       });
                       // 202: Use TextController to clear text field
                       messageTextController.clear();
@@ -143,7 +144,7 @@ class MessagesStream extends StatelessWidget {
         // Add data type to streambuilder, QuerySnapshot comes from Firebase
         StreamBuilder<QuerySnapshot>(
       // Define the stream
-      stream: _firestore.collection('messages').snapshots(),
+      stream: _firestore.collection('messages').orderBy("time").snapshots(),
       // Builder is used to rebuild the stream on each event
       //
       builder: (context, firebaseSnapshot) {
